@@ -2,27 +2,27 @@ package main
 
 import (
 	"fmt"
-	"github.com/joho/godotenv"
 	"log"
 	"miniIRC/cmd/handler"
 	"miniIRC/cmd/server"
 	"net"
 	"os"
+
+	"github.com/fatih/color"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	fmt.Println("Hello, MiniIRC!")
-
+	fmt.Println(color.GreenString("Hello, MiniIRC!"))
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
 
-	ln, err := net.Listen("tcp", ":"+os.Getenv("PORT"))
+	ln, err := net.Listen("tcp", "127.0.0.1:"+os.Getenv("PORT"))
 	if err != nil {
 		log.Fatalf("Server Crashed: %s\n", err)
 	}
-
 	log.Println("TCP server started listening to port :", os.Getenv("PORT"))
 
 	messages := make(chan handler.Message)
