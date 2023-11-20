@@ -6,10 +6,6 @@
 all: build
 
 build:
-	@echo Building...
-	@go run ./cmd/
-
-build:
 	@echo "Building..."
 	@go build -o main cmd/main.go
 

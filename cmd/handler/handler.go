@@ -83,7 +83,6 @@ func HandleNewMessage(msg Message, clients map[string]*Client) {
 	// author := clients[authorAddr.String()]
 	log.Printf("New message from %v %s\n", msg.Connection.RemoteAddr().String(), msg.Content)
 	for _, client := range clients {
-		fmt.Println(client.UserName)
 		if client.Connection.RemoteAddr().String() != authorAddr.String() {
 			_, err := client.Connection.Write([]byte(client.UserName + ": " + msg.Content))
 			if err != nil {
